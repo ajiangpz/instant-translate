@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>即时翻译</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 15px;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 18px;
+      color: #2c3e50;
+      margin: 0 0 15px 0;
+      text-align: center;
+    }
+
+    .status {
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 114, 255, 0.3);
+    }
+
+    .settings-link {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: #0072ff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .settings-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>即时翻译</h1>
+    <div class="status">在输入框中输入文本即可自动翻译</div>
+    <button class="button" id="openOptions">打开设置</button>
+    <a href="#" class="settings-link" id="openOptionsLink">语言设置</a>
+  </div>
+  <script src="dist/popup.js"></script>
+</body>
+</html> 
