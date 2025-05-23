@@ -33,6 +33,52 @@
       margin-top: 10px;
     }
 
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      margin: 15px auto;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
     .button {
       display: block;
       width: 100%;
@@ -70,6 +116,10 @@
   <div class="container">
     <h1>即时翻译</h1>
     <div class="status">在输入框中输入文本即可自动翻译</div>
+    <label class="switch">
+      <input type="checkbox" id="toggleTranslation">
+      <span class="slider"></span>
+    </label>
     <button class="button" id="openOptions">打开设置</button>
     <a href="#" class="settings-link" id="openOptionsLink">语言设置</a>
   </div>

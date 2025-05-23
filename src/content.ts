@@ -230,6 +230,7 @@ class Translator {
     targetLanguage: 'en'
   };
   private isComposing: boolean = false; // 添加输入法组合状态标记
+  private isEnabled = true;
 
   constructor() {
     this.popup = new TranslationPopup();
@@ -239,6 +240,18 @@ class Translator {
     // 添加应用按钮的点击事件
     this.popup.applyButton.addEventListener("click", () => {
       this.popup.applyTranslation();
+    });
+
+    // 从存储中获取初始状态
+    chrome.storage.sync.get(['enabled'], (result) => {
+      this.isEnabled = result.enabled !== false;
+    });
+
+    // 监听来自 popup 的消息
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+      if (message.action === 'toggleTranslation') {
+        this.isEnabled = message.enabled;
+      }
     });
   }
 
@@ -291,8 +304,10 @@ class Translator {
   private initializeEventListeners() {
     // 使用事件委托，监听所有输入事件
     document.addEventListener("input", (event) => {
-      const target = event.target as HTMLElement;
-      if (this.isTextInput(target)) {
+      if (!this.isEnabled) return;
+      
+      const target = event.target as HTMLInputElement | HTMLTextAreaElement;
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
         this.handleInput(target);
       }
     });
